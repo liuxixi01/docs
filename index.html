@@ -38,61 +38,107 @@ ul.app-sub-sidebar > li.file.active{
 </style>
 
 <body>
- <nav>
-      <a href="https://liuxixi01.github.io/">Mr.Liu</a>
-  </nav>
-  <div id="app"></div>
-  <script>
+    <nav>
+        <a href="https://liuxixi01.github.io/">Mr.Liu</a>
+    </nav>
+    <div id="app"></div>
+    <script>
     window.$docsify = {
-      name: 'Mr.Liu',
-      repo: 'https://liuxixi01.github.io/',
-      // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
-      loadSidebar: "SIDEBAR.md",
-      // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
-      loadNavbar: "NAVBAR.md",
-      // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
-      coverpage: "COVERPAGE.md",
-      // 最大支持渲染的标题层级
-      maxLevel: 5,
-      // 自定义侧边栏后默认不会再生成目录，设置目录的展开的最大层级（建议配置为2-4）
-      subMaxLevel: 4,
-      // 小屏设备下合并导航栏到侧边栏
-      mergeNavbar: true,
-      // 折叠侧边栏
-      sidebarDisplayLevel: 4,
-      /*搜索相关设置*/
-      search: {
-          maxAge: 86400000,// 过期时间，单位毫秒，默认一天
-          paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
-          placeholder: '搜索',              
-          // 支持本地化
-          placeholder: {
-              '/zh-cn/': '搜索',
-              '/': 'Type to search'
-          },
-          noData: '找不到结果',
-          depth: 4,
-          hideOtherSidebarContent: false,
-          namespace: 'Docsify-Guide',
+        name: 'Mr.Liu',
+        repo: 'https://liuxixi01.github.io/',
+        // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
+        loadSidebar: "SIDEBAR.md",
+        // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
+        loadNavbar: "NAVBAR.md",
+        // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
+        coverpage: "COVERPAGE.md",
+        // 最大支持渲染的标题层级
+        maxLevel: 5,
+        // 自定义侧边栏后默认不会再生成目录，设置目录的展开的最大层级（建议配置为2-4）
+        subMaxLevel: 4,
+        // 小屏设备下合并导航栏到侧边栏
+        mergeNavbar: true,
+        // 折叠侧边栏
+        sidebarDisplayLevel: 4,
+        autoHeader: true,
+        //自动跳转到页面顶部
+        auto2top: true,
+        /*搜索相关设置*/
+        search: {
+            maxAge: 86400000,// 过期时间，单位毫秒，默认一天
+            paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
+            placeholder: '搜索',              
+            // 支持本地化
+            placeholder: {
+                '/zh-cn/': '搜索',
+                '/': 'Type to search'
+            },
+            noData: '找不到结果',
+            depth: 4,
+            hideOtherSidebarContent: false,
+            namespace: 'Docsify-Guide',
         },
-      copyCode: {
-        buttonText : '复制代码',
-        errorText  : 'Error',
-        successText: '复制成功'
-      }
+        copyCode: {
+            buttonText : '复制代码',
+            errorText  : 'Error',
+            successText: '复制成功'
+        },
+        plugins: [
+            // mathjax
+            function (hook) {
+                hook.doneEach(function () {
+                    if (typeof MathJax !== 'undefined') {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+                    }
+                })
+            }
+        ]
     } 
-  </script>
-  <!-- Docsify v4 -->
-  <script src="./static/js/docsify.min.js"></script>
-  <script src="./static/js/zoom-image.min.js"></script>
-  <script src="./static/js/search.min.js"></script>
-  <script src="./static/js/docsify-copy-code.min.js"></script>
-  <script src="./static/js/docsify-sidebar-collapse.min.js"></script>
+    </script>
+    <!-- Docsify v4 -->
+    <script src="./static/js/docsify.min.js"></script>
+    <script src="./static/js/zoom-image.min.js"></script>
+    <script src="./static/js/search.min.js"></script>
+    <script src="./static/js/docsify-copy-code.min.js"></script>
+    <script src="./static/js/docsify-sidebar-collapse.min.js"></script>
+    <script src="./static/js/docsify-plugin-flexible-alerts.js"></script>
+    <script src="./static/js/vanilla-back-to-top.min.js"></script>
+    <script src="./static/js/docsify-darklight-theme.js"></script>
 
-  <!-- 如下为代码高亮的js  到如下地址，修改路径，下载js到本地，然后再引入即可。https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js -->
-  <script src="./static/js/prism-python.min.js"></script>
-  <script src="./static/js/prism-bash.min.js"></script>
+    <!-- 如下为代码高亮的js  到如下地址，修改路径，下载js到本地，然后再引入即可。https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js -->
+    <script src="./static/js/prism-python.min.js"></script>
+    <script src="./static/js/prism-bash.min.js"></script>
+    
+    <!-- 支持数学公式 -->
+    <script src="./static/js/mathjax.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
 
+    <!-- 回到顶部功能 -->
+    <script>
+        addBackToTop({
+            diameter: 56,
+            backgroundColor: 'rgb(66, 185, 131)',
+            textColor: '#fff',
+        });
+    </script>
+
+    <!-- 实现离线化 -->
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('pwa.js')
+        }
+    </script>
 
 
 </body>
